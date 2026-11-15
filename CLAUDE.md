@@ -28,6 +28,10 @@ Apresentação web em React, com animação pesada feita em Anime.js.
   navegação e pré-carregamento de fontes e imagens.
 - `src/slides/SlideNN.tsx` — um componente por slide; a ordem fica em `src/slides/index.ts`.
 - `src/assets/` — imagens e SVGs exportados do Figma (não redesenhar nem editar à mão).
+- Carregamento em etapas (`src/deck/preload.ts`): a abertura espera só as fontes e as imagens do
+  slide inicial; os demais slides carregam em segundo plano, na ordem. Por isso **cada slide
+  declara suas imagens** em `SlideNN.imagens = [...]`, no fim do arquivo — ao importar uma
+  imagem nova, incluir nessa lista (imagem fora da lista ainda carrega, mas por último).
 - Origem do design: Figma `P8AJYVgyYVs3F3uxSauFAr`, página "Apresentação final" (26:6681),
   quadros 01–06. Cada slide cita o id do seu quadro no comentário do componente.
 

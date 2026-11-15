@@ -78,3 +78,6 @@ export function Slide01() {
     </section>
   )
 }
+
+/** Imagens do slide, para o pré-carregamento (`src/deck/preload.ts`). */
+Slide01.imagens = [chama, conector, estacaoMir, grade, hudCaixaX, hudSetas, tripulacao]

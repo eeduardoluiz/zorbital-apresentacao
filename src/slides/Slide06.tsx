@@ -41,6 +41,8 @@ export function Slide06() {
     const tocar = (i: number) => {
       atual = i
       if (ESTATICO) return
+      // Enquanto este toca, o próximo já vai baixando.
+      if (videos[i + 1]) videos[i + 1].preload = 'auto'
       videos[i].currentTime = 0
       void videos[i].play().catch(() => undefined)
     }
@@ -158,7 +160,9 @@ export function Slide06() {
             src={clipe.src}
             muted
             playsInline
-            preload="auto"
+            // Só o primeiro baixa ao abrir o slide; cada um libera o seguinte ao começar a
+            // tocar (ver `tocar`), para os cinco não disputarem a rede ao mesmo tempo.
+            preload={i === 0 ? 'auto' : 'none'}
             onEnded={() => scope.current?.methods.avancar()}
           />
         </div>
@@ -178,3 +182,8 @@ export function Slide06() {
     </section>
   )
 }
+
+/** Imagens do slide, para o pré-carregamento (`src/deck/preload.ts`). */
+Slide06.imagens = [grade, horizonteBrilho]
+/** Primeiro vídeo: começa a baixar em segundo plano, antes de o slide abrir. */
+Slide06.video = CLIPES[0].src

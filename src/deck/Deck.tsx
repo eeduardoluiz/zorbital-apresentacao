@@ -3,10 +3,10 @@ import {
   useEffect,
   useMemo,
   useState,
-  type ComponentType,
   type MouseEvent,
 } from 'react'
-import { DeckContext } from '@/deck/context.ts'
+import { DeckContext, type SlideComponent } from '@/deck/context.ts'
+import { clamp, indexFromHash } from '@/deck/hash.ts'
 import '@/deck/deck.css'
 
 /** Tamanho do quadro no Figma. O palco é sempre 1920×1080 e escala para caber na janela. */
@@ -17,13 +17,6 @@ const IDLE_CURSOR_MS = 2500
 /** Exportado: o slide de vídeos usa as mesmas teclas para pular para o próximo vídeo. */
 export const NEXT_KEYS = new Set(['ArrowRight', 'ArrowDown', 'PageDown', ' ', 'Enter', 'n', 'N'])
 const PREV_KEYS = new Set(['ArrowLeft', 'ArrowUp', 'PageUp', 'Backspace', 'p', 'P'])
-
-const clamp = (n: number, max: number) => Math.min(Math.max(n, 0), max)
-
-function indexFromHash(total: number) {
-  const n = Number.parseInt(window.location.hash.slice(1), 10)
-  return Number.isFinite(n) ? clamp(n - 1, total - 1) : 0
-}
 
 function fitScale() {
   return Math.min(window.innerWidth / STAGE_W, window.innerHeight / STAGE_H)
@@ -41,7 +34,7 @@ function fitScale() {
  * Mouse / toque: clique avança; clique no quarto esquerdo da tela volta.
  * O slide atual fica no hash da URL (`#3`), então recarregar mantém a posição.
  */
-export function Deck({ slides }: { slides: ComponentType[] }) {
+export function Deck({ slides }: { slides: SlideComponent[] }) {
   const total = slides.length
   const [index, setIndex] = useState(() => indexFromHash(total))
   const [replay, setReplay] = useState(0)

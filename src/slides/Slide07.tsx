@@ -156,3 +156,17 @@ export function Slide07() {
     </section>
   )
 }
+
+/** Imagens do slide, para o pré-carregamento (`src/deck/preload.ts`). */
+Slide07.imagens = [
+  alexandre,
+  arlindo,
+  eduardo,
+  ernesto,
+  faixaListrada,
+  grade,
+  hudAneis,
+  hudCaixaX,
+  hudSetas,
+  mariaEduarda,
+]

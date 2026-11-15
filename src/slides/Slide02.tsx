@@ -101,3 +101,6 @@ export function Slide02() {
     </section>
   )
 }
+
+/** Imagens do slide, para o pré-carregamento (`src/deck/preload.ts`). */
+Slide02.imagens = [astronauta, colchetes, faixaListrada, grade, hudMedidor, hudOrbita]

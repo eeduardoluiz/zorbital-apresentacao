@@ -79,3 +79,16 @@ export function Slide04() {
     </section>
   )
 }
+
+/** Imagens do slide, para o pré-carregamento (`src/deck/preload.ts`). */
+Slide04.imagens = [
+  chamas,
+  etiquetaMicro,
+  etiquetaTerra,
+  faixaListrada,
+  grade,
+  hudAneis,
+  molduraMicroAba,
+  molduraMicro,
+  molduraTerra,
+]

@@ -6,11 +6,13 @@ import '@fontsource/sora/600.css'
 import '@fontsource/geist-mono/500.css'
 import '@/index.css'
 import App from '@/App.tsx'
+import { indexFromHash } from '@/deck/hash.ts'
 import { preloadDeck } from '@/deck/preload.ts'
+import { slides } from '@/slides/index.ts'
 
 const root = createRoot(document.getElementById('root')!)
 
-void preloadDeck().then(() => {
+void preloadDeck(slides, indexFromHash(slides.length)).then(() => {
   root.render(
     <StrictMode>
       <App />

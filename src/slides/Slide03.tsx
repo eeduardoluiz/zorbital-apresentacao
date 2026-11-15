@@ -65,3 +65,6 @@ export function Slide03() {
     </section>
   )
 }
+
+/** Imagens do slide, para o pré-carregamento (`src/deck/preload.ts`). */
+Slide03.imagens = [brilhoSolar, caneta, conector, grade, maosComLivro, oculos]

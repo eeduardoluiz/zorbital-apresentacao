@@ -96,3 +96,17 @@ export function Slide05() {
     </section>
   )
 }
+
+/** Imagens do slide, para o pré-carregamento (`src/deck/preload.ts`). */
+Slide05.imagens = [
+  chamaMicrogravidade,
+  conector,
+  experimentoA,
+  grade,
+  horizonteTerra,
+  hudCaixaX,
+  molduraExpA,
+  molduraExpB,
+  molduraLinhaTempo,
+  registros,
+]
