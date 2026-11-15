@@ -55,8 +55,9 @@ Apresentação web em React, com animação pesada feita em Anime.js.
 
 - Vídeos ficam em `public/videos/` (não em `src/assets/`) e entram pela lista `CLIPES` do
   `Slide06.tsx`, na ordem de exibição. Tocam sozinhos em sequência, com entrada e saída;
-  no slide 06 as teclas de avançar e o clique pulam para o próximo vídeo e só passam ao
-  slide seguinte depois do último.
+  no slide 06 as teclas de avançar e o clique pulam para o próximo vídeo; no último vídeo,
+  passam direto ao slide seguinte. Quando o último vídeo termina sozinho, o slide chama
+  `useDeck().avancar()` e a apresentação segue para o próximo slide sem comando.
 - O slide 07 (equipe) não vem do Figma: a lista `EQUIPE` do `Slide07.tsx` define a ordem,
   as fotos (800×800 em `src/assets/`) e os cargos. Membro sem `foto` mostra as iniciais.
 

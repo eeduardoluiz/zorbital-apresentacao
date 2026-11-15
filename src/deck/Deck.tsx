@@ -1,4 +1,12 @@
-import { useCallback, useEffect, useState, type ComponentType, type MouseEvent } from 'react'
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  type ComponentType,
+  type MouseEvent,
+} from 'react'
+import { DeckContext } from '@/deck/context.ts'
 import '@/deck/deck.css'
 
 /** Tamanho do quadro no Figma. O palco é sempre 1920×1080 e escala para caber na janela. */
@@ -42,6 +50,8 @@ export function Deck({ slides }: { slides: ComponentType[] }) {
 
   const go = useCallback((to: number) => setIndex(clamp(to, total - 1)), [total])
   const step = useCallback((delta: number) => setIndex((i) => clamp(i + delta, total - 1)), [total])
+
+  const controles = useMemo(() => ({ avancar: () => step(1) }), [step])
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -112,7 +122,9 @@ export function Deck({ slides }: { slides: ComponentType[] }) {
         style={{ transform: `translate(-50%, -50%) scale(${scale})` }}
         data-slide={index + 1}
       >
-        <Slide key={`${index}:${replay}`} />
+        <DeckContext value={controles}>
+          <Slide key={`${index}:${replay}`} />
+        </DeckContext>
       </div>
     </div>
   )

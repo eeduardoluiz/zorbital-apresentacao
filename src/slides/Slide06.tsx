@@ -1,6 +1,7 @@
 import { animate, createTimer, utils } from 'animejs'
 import grade from '@/assets/grade.svg'
 import horizonteBrilho from '@/assets/horizonte-brilho.svg'
+import { useDeck } from '@/deck/context.ts'
 import { NEXT_KEYS } from '@/deck/Deck.tsx'
 import { ESTATICO, useAnimeScope } from '@/lib/useAnimeScope.ts'
 import { at, entrada } from '@/slides/util.ts'
@@ -10,11 +11,11 @@ const VIDEOS = `${import.meta.env.BASE_URL}videos/`
 
 /** Vídeos da demonstração, na ordem de exibição (arquivos em `public/videos/`). */
 const CLIPES = [
+  { src: `${VIDEOS}05-agente.mp4`, rotulo: 'Agente' },
   { src: `${VIDEOS}01-flex-simulacao.mp4`, rotulo: 'FLEX · Simulação' },
   { src: `${VIDEOS}02-flex-painel.mp4`, rotulo: 'FLEX · Painel' },
   { src: `${VIDEOS}03-estudos.mp4`, rotulo: 'Estudos' },
   { src: `${VIDEOS}04-visao-geral.mp4`, rotulo: 'Visão geral' },
-  { src: `${VIDEOS}05-agente.mp4`, rotulo: 'Agente' },
 ]
 
 const doisDigitos = (n: number) => String(n).padStart(2, '0')
@@ -23,11 +24,14 @@ const doisDigitos = (n: number) => String(n).padStart(2, '0')
  * 06 — Horizonte com brilho (Figma 26:7667) + vídeos da demonstração.
  *
  * Os vídeos não estão no Figma. Eles tocam sozinhos, um depois do outro: quando um termina,
- * sai e o seguinte entra. Depois do último, o slide volta a ser só o horizonte.
- * Enquanto houver vídeo, as teclas de avançar e o clique pulam para o próximo vídeo em vez
- * de trocar de slide; depois do último, voltam a ser do Deck. `R` recomeça a sequência.
+ * sai e o seguinte entra. Quando o último termina, ele sai e a apresentação passa sozinha
+ * para o slide seguinte (se não houver um, fica só o horizonte).
+ * Enquanto houver um próximo vídeo, as teclas de avançar e o clique pulam para ele em vez
+ * de trocar de slide; no último vídeo, voltam a ser do Deck e levam direto ao slide
+ * seguinte. `R` recomeça a sequência.
  */
 export function Slide06() {
+  const { avancar: avancarSlide } = useDeck()
   const { root, scope } = useAnimeScope<HTMLElement>((self) => {
     const videos = [...(self.root as HTMLElement).querySelectorAll('video')]
     let atual = -1 // índice do vídeo em exibição; -1 antes do primeiro, CLIPES.length no fim
@@ -85,8 +89,10 @@ export function Slide06() {
           self.methods.entrar(i + 1)
           tocar(i + 1)
         } else {
+          // Fim da sequência: segue sozinho para o próximo slide.
           atual = CLIPES.length
           animate('.trilho', { opacity: 0, duration: 500, ease: 'outQuad' })
+          avancarSlide()
         }
       })
     })
@@ -114,8 +120,9 @@ export function Slide06() {
         .call(() => tocar(0), 900)
     })
 
-    // Em captura, para chegar antes do Deck e segurar o avanço enquanto houver vídeo.
-    const pendente = () => !ESTATICO && atual < CLIPES.length
+    // Em captura, para chegar antes do Deck e segurar o avanço enquanto houver um próximo
+    // vídeo. No último, o avanço já é do Deck: vai direto ao slide seguinte, sem parar no fundo.
+    const pendente = () => !ESTATICO && atual < CLIPES.length - 1
     const onKey = (e: KeyboardEvent) => {
       if (e.metaKey || e.ctrlKey || e.altKey || e.shiftKey) return
       if (!NEXT_KEYS.has(e.key) || !pendente()) return
