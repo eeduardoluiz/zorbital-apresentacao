@@ -1,0 +1,37 @@
+:root {
+  /* Variáveis do Figma (coleção "cor") */
+  --cor-fundo: #000;
+  --cor-texto: #fff;
+  --cor-primaria: #2cff2c;
+  --cor-secundaria: #e21ef0;
+  --cor-alerta: #ff1414;
+
+  --fonte-titulo: 'Sora', system-ui, sans-serif;
+  --fonte-mono: 'Geist Mono', ui-monospace, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  overflow: hidden;
+  background: #000;
+  font-family: var(--fonte-titulo);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100svh;
+}

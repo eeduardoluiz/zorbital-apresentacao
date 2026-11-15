@@ -1,0 +1,13 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="170" height="230" viewBox="0 0 170 230" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="HUD/Medidor">
+<path id="Vector" d="M42 24H152L140 42H30L42 24Z" fill="#0E6B12"/>
+<path id="Vector_2" d="M42 51H152L140 69H30L42 51Z" fill="#0E6B12"/>
+<path id="Vector_3" d="M42 78H152L140 96H30L42 78Z" fill="#2CFF2C"/>
+<path id="Vector_4" d="M42 105H152L140 123H30L42 105Z" fill="#2CFF2C"/>
+<path id="Vector_5" d="M42 132H152L140 150H30L42 132Z" fill="#E21EF0"/>
+<path id="Vector_6" d="M42 159H152L140 177H30L42 159Z" fill="#E21EF0"/>
+<path id="Vector_7" d="M42 186H152L140 204H30L42 186Z" fill="#E21EF0"/>
+<path id="Vector_8" d="M64 12V218" stroke-width="3" stroke="white"/>
+<path id="Vector_9" d="M3 44V3H44M167 186V227H126" stroke-width="6" stroke="#2CFF2C"/>
+</g>
+</svg>

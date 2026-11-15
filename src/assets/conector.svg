@@ -1,0 +1,7 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="150" height="12" viewBox="0 0 150 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Conector">
+<path id="N&#195;&#179;" d="M11 6C11 8.76142 8.76142 11 6 11C3.23858 11 1 8.76142 1 6C1 3.23858 3.23858 1 6 1C8.76142 1 11 3.23858 11 6Z" stroke-width="1.5" stroke="#2CFF2C"/>
+<path id="N&#195;&#179;_2" d="M33 6C33 8.76142 30.7614 11 28 11C25.2386 11 23 8.76142 23 6C23 3.23858 25.2386 1 28 1C30.7614 1 33 3.23858 33 6Z" stroke-width="1.5" stroke="#2CFF2C"/>
+<path id="Linha" d="M11 6H23M33 6H150" stroke-width="1.5" stroke="#2CFF2C"/>
+</g>
+</svg>

@@ -1,0 +1,6 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="HUD/Caixa X">
+<path id="Vector" d="M1 1H63V63H1V1Z" stroke-width="1.5" stroke="#2CFF2C"/>
+<path id="Vector_2" d="M1 1L32 32M32 32L63 63M32 32L63 1M32 32L1 63" stroke-width="1.5" stroke="#2CFF2C"/>
+</g>
+</svg>
